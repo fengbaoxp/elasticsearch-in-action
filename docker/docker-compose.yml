@@ -1,0 +1,25 @@
+version: '2'
+services:
+  e1:
+    image: elasticsearch:2.3.5
+    volumes:
+      - ./e1/config/:/usr/share/elasticsearch/config/
+    ports: 
+      - '9201:9200'
+    network_mode: "default"
+
+  e2:
+    image: elasticsearch:2.3.5
+    volumes:
+      - ./e1/config/:/usr/share/elasticsearch/config/
+    ports: 
+      - '9202:9200'
+    network_mode: "default"
+
+  e3:
+    image: elasticsearch:2.3.5
+    volumes:
+      - ./e1/config/:/usr/share/elasticsearch/config/
+    ports: 
+      - '9203:9200'
+    network_mode: "default"
