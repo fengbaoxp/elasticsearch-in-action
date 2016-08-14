@@ -6,7 +6,8 @@ services:
       - ./e1/config/:/usr/share/elasticsearch/config/
     ports: 
       - '9201:9200'
-    network_mode: "default"
+    network_mode: "es-network"
+    container_name: "e1"
 
   e2:
     image: elasticsearch:2.3.5
@@ -14,9 +15,8 @@ services:
       - ./e2/config/:/usr/share/elasticsearch/config/
     ports: 
       - '9202:9200'
-    network_mode: "host"
-    links:
-      - e1
+    network_mode: "es-network"
+    container_name: "e2"
 
   e3:
     image: elasticsearch:2.3.5
@@ -24,15 +24,15 @@ services:
       - ./e3/config/:/usr/share/elasticsearch/config/
     ports: 
       - '9203:9200'
-    network_mode: "host"
-    links:
-      - e1
+    network_mode: "es-network"
+    container_name: "e3"
 
   kopf:
-    image: lmenezes/elasticsearch-kopf:1.4.2
+    image: lmenezes/elasticsearch-kopf:2.1.2
     ports:
       - 8080:80
     environment:
       - KOPF_SERVER_NAME=kopf
-      - KOPF_ES_SERVERS=10.100.199.200:9201
-    network_mode: "host"
+      - KOPF_ES_SERVERS=e1:9200
+    network_mode: "es-network"
+    container_name: "kopf"
