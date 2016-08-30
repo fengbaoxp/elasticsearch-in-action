@@ -8,6 +8,7 @@ services:
       - '9201:9200'
     network_mode: "es-network"
     container_name: "e1"
+    restart: always
 
   e2:
     image: elasticsearch:2.3.5
@@ -17,6 +18,7 @@ services:
       - '9202:9200'
     network_mode: "es-network"
     container_name: "e2"
+    restart: always
 
   e3:
     image: elasticsearch:2.3.5
@@ -26,13 +28,15 @@ services:
       - '9203:9200'
     network_mode: "es-network"
     container_name: "e3"
+    restart: always
 
-  kopf:
-    image: lmenezes/elasticsearch-kopf:2.1.2
-    ports:
-      - 8080:80
-    environment:
-      - KOPF_SERVER_NAME=kopf
-      - KOPF_ES_SERVERS=e1:9200
-    network_mode: "es-network"
-    container_name: "kopf"
+  # kopf:
+  #   image: lmenezes/elasticsearch-kopf:2.1.2
+  #   ports:
+  #     - 8080:80
+  #   environment:
+  #     - KOPF_SERVER_NAME=kopf
+  #     - KOPF_ES_SERVERS=e1:9200
+  #   network_mode: "es-network"
+  #   container_name: "kopf"
+  #   restart: always

@@ -61,6 +61,10 @@ network.host: 0.0.0.0
 # For more information, see the documentation at:
 # <http://www.elastic.co/guide/en/elasticsearch/reference/current/modules-network.html>
 #
+# http.cors.enabled: false
+http.cors.enabled: true
+http.cors.allow-origin: /https?:\/\/10.100.199.*(:[0-9]+)?/
+# http.cors.allow-origin: /https?:\/\/10.100.199.200:8080/
 # --------------------------------- Discovery ----------------------------------
 #
 # Pass an initial list of hosts to perform discovery when new node is started:
